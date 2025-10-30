@@ -1,0 +1,2297 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> items
+Rule 2     items -> items item
+Rule 3     items -> item
+Rule 4     item -> decl
+Rule 5     item -> func
+Rule 6     item -> stmt
+Rule 7     decl -> type varlist SEMICOLON
+Rule 8     type -> INT
+Rule 9     type -> FLOAT
+Rule 10    varlist -> varlist COMMA var
+Rule 11    varlist -> var
+Rule 12    var -> ID
+Rule 13    var -> ID LSQUARE NUMBER RSQUARE
+Rule 14    func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE
+Rule 15    params -> paramlist
+Rule 16    params -> empty
+Rule 17    paramlist -> paramlist COMMA param
+Rule 18    paramlist -> param
+Rule 19    param -> type ID
+Rule 20    funcbody -> funcstmts func_return
+Rule 21    funcstmts -> funcstmts stmt
+Rule 22    funcstmts -> empty
+Rule 23    func_return -> RETURN expr SEMICOLON
+Rule 24    func_return -> empty
+Rule 25    stmt -> ID EQUALS expr SEMICOLON
+Rule 26    stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+Rule 27    stmt -> PRINT LPAREN expr RPAREN SEMICOLON
+Rule 28    stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+Rule 29    else_block -> ELSE LBRACE block RBRACE
+Rule 30    else_block -> empty
+Rule 31    block -> stmts
+Rule 32    block -> empty
+Rule 33    stmts -> stmts stmt
+Rule 34    stmts -> stmt
+Rule 35    stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE
+Rule 36    stmt -> ID LPAREN call_args RPAREN SEMICOLON
+Rule 37    call_args -> call_args COMMA expr
+Rule 38    call_args -> expr
+Rule 39    call_args -> empty
+Rule 40    expr -> expr PLUS expr
+Rule 41    expr -> expr MINUS expr
+Rule 42    expr -> expr TIMES expr
+Rule 43    expr -> expr DIVIDE expr
+Rule 44    expr -> expr EQ expr
+Rule 45    expr -> expr NE expr
+Rule 46    expr -> expr LT expr
+Rule 47    expr -> expr GT expr
+Rule 48    expr -> expr LE expr
+Rule 49    expr -> expr GE expr
+Rule 50    expr -> FNUMBER
+Rule 51    expr -> NUMBER
+Rule 52    expr -> ID
+Rule 53    expr -> ID LSQUARE expr RSQUARE
+Rule 54    expr -> ID LPAREN call_args RPAREN
+Rule 55    empty -> <empty>
+
+Terminals, with rules where they appear
+
+COMMA                : 10 17 37
+DIVIDE               : 43
+ELSE                 : 29
+EQ                   : 44
+EQUALS               : 25 26
+FLOAT                : 9
+FNUMBER              : 50
+GE                   : 49
+GT                   : 47
+ID                   : 12 13 14 19 25 26 36 52 53 54
+IF                   : 28
+INT                  : 8
+LBRACE               : 14 28 29 35
+LE                   : 48
+LPAREN               : 14 27 28 35 36 54
+LSQUARE              : 13 26 53
+LT                   : 46
+MINUS                : 41
+NE                   : 45
+NUMBER               : 13 51
+PLUS                 : 40
+PRINT                : 27
+RBRACE               : 14 28 29 35
+RETURN               : 23
+RPAREN               : 14 27 28 35 36 54
+RSQUARE              : 13 26 53
+SEMICOLON            : 7 23 25 26 27 36
+TIMES                : 42
+WHILE                : 35
+error                : 
+
+Nonterminals, with rules where they appear
+
+block                : 28 29 35
+call_args            : 36 37 54
+decl                 : 4
+else_block           : 28
+empty                : 16 22 24 30 32 39
+expr                 : 23 25 26 26 27 28 35 37 38 40 40 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 53
+func                 : 5
+func_return          : 20
+funcbody             : 14
+funcstmts            : 20 21
+item                 : 2 3
+items                : 1 2
+param                : 17 18
+paramlist            : 15 17
+params               : 14
+program              : 0
+stmt                 : 6 21 33 34
+stmts                : 31 33
+type                 : 7 14 19
+var                  : 10 11
+varlist              : 7 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . items
+    (2) items -> . items item
+    (3) items -> . item
+    (4) item -> . decl
+    (5) item -> . func
+    (6) item -> . stmt
+    (7) decl -> . type varlist SEMICOLON
+    (14) func -> . type ID LPAREN params RPAREN LBRACE funcbody RBRACE
+    (25) stmt -> . ID EQUALS expr SEMICOLON
+    (26) stmt -> . ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (27) stmt -> . PRINT LPAREN expr RPAREN SEMICOLON
+    (28) stmt -> . IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+    (35) stmt -> . WHILE LPAREN expr RPAREN LBRACE block RBRACE
+    (36) stmt -> . ID LPAREN call_args RPAREN SEMICOLON
+    (8) type -> . INT
+    (9) type -> . FLOAT
+
+    ID              shift and go to state 8
+    PRINT           shift and go to state 9
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    INT             shift and go to state 12
+    FLOAT           shift and go to state 13
+
+    program                        shift and go to state 1
+    items                          shift and go to state 2
+    item                           shift and go to state 3
+    decl                           shift and go to state 4
+    func                           shift and go to state 5
+    stmt                           shift and go to state 6
+    type                           shift and go to state 7
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> items .
+    (2) items -> items . item
+    (4) item -> . decl
+    (5) item -> . func
+    (6) item -> . stmt
+    (7) decl -> . type varlist SEMICOLON
+    (14) func -> . type ID LPAREN params RPAREN LBRACE funcbody RBRACE
+    (25) stmt -> . ID EQUALS expr SEMICOLON
+    (26) stmt -> . ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (27) stmt -> . PRINT LPAREN expr RPAREN SEMICOLON
+    (28) stmt -> . IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+    (35) stmt -> . WHILE LPAREN expr RPAREN LBRACE block RBRACE
+    (36) stmt -> . ID LPAREN call_args RPAREN SEMICOLON
+    (8) type -> . INT
+    (9) type -> . FLOAT
+
+    $end            reduce using rule 1 (program -> items .)
+    ID              shift and go to state 8
+    PRINT           shift and go to state 9
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    INT             shift and go to state 12
+    FLOAT           shift and go to state 13
+
+    item                           shift and go to state 14
+    decl                           shift and go to state 4
+    func                           shift and go to state 5
+    stmt                           shift and go to state 6
+    type                           shift and go to state 7
+
+state 3
+
+    (3) items -> item .
+
+    ID              reduce using rule 3 (items -> item .)
+    PRINT           reduce using rule 3 (items -> item .)
+    IF              reduce using rule 3 (items -> item .)
+    WHILE           reduce using rule 3 (items -> item .)
+    INT             reduce using rule 3 (items -> item .)
+    FLOAT           reduce using rule 3 (items -> item .)
+    $end            reduce using rule 3 (items -> item .)
+
+
+state 4
+
+    (4) item -> decl .
+
+    ID              reduce using rule 4 (item -> decl .)
+    PRINT           reduce using rule 4 (item -> decl .)
+    IF              reduce using rule 4 (item -> decl .)
+    WHILE           reduce using rule 4 (item -> decl .)
+    INT             reduce using rule 4 (item -> decl .)
+    FLOAT           reduce using rule 4 (item -> decl .)
+    $end            reduce using rule 4 (item -> decl .)
+
+
+state 5
+
+    (5) item -> func .
+
+    ID              reduce using rule 5 (item -> func .)
+    PRINT           reduce using rule 5 (item -> func .)
+    IF              reduce using rule 5 (item -> func .)
+    WHILE           reduce using rule 5 (item -> func .)
+    INT             reduce using rule 5 (item -> func .)
+    FLOAT           reduce using rule 5 (item -> func .)
+    $end            reduce using rule 5 (item -> func .)
+
+
+state 6
+
+    (6) item -> stmt .
+
+    ID              reduce using rule 6 (item -> stmt .)
+    PRINT           reduce using rule 6 (item -> stmt .)
+    IF              reduce using rule 6 (item -> stmt .)
+    WHILE           reduce using rule 6 (item -> stmt .)
+    INT             reduce using rule 6 (item -> stmt .)
+    FLOAT           reduce using rule 6 (item -> stmt .)
+    $end            reduce using rule 6 (item -> stmt .)
+
+
+state 7
+
+    (7) decl -> type . varlist SEMICOLON
+    (14) func -> type . ID LPAREN params RPAREN LBRACE funcbody RBRACE
+    (10) varlist -> . varlist COMMA var
+    (11) varlist -> . var
+    (12) var -> . ID
+    (13) var -> . ID LSQUARE NUMBER RSQUARE
+
+    ID              shift and go to state 16
+
+    varlist                        shift and go to state 15
+    var                            shift and go to state 17
+
+state 8
+
+    (25) stmt -> ID . EQUALS expr SEMICOLON
+    (26) stmt -> ID . LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (36) stmt -> ID . LPAREN call_args RPAREN SEMICOLON
+
+    EQUALS          shift and go to state 18
+    LSQUARE         shift and go to state 19
+    LPAREN          shift and go to state 20
+
+
+state 9
+
+    (27) stmt -> PRINT . LPAREN expr RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 21
+
+
+state 10
+
+    (28) stmt -> IF . LPAREN expr RPAREN LBRACE block RBRACE else_block
+
+    LPAREN          shift and go to state 22
+
+
+state 11
+
+    (35) stmt -> WHILE . LPAREN expr RPAREN LBRACE block RBRACE
+
+    LPAREN          shift and go to state 23
+
+
+state 12
+
+    (8) type -> INT .
+
+    ID              reduce using rule 8 (type -> INT .)
+
+
+state 13
+
+    (9) type -> FLOAT .
+
+    ID              reduce using rule 9 (type -> FLOAT .)
+
+
+state 14
+
+    (2) items -> items item .
+
+    ID              reduce using rule 2 (items -> items item .)
+    PRINT           reduce using rule 2 (items -> items item .)
+    IF              reduce using rule 2 (items -> items item .)
+    WHILE           reduce using rule 2 (items -> items item .)
+    INT             reduce using rule 2 (items -> items item .)
+    FLOAT           reduce using rule 2 (items -> items item .)
+    $end            reduce using rule 2 (items -> items item .)
+
+
+state 15
+
+    (7) decl -> type varlist . SEMICOLON
+    (10) varlist -> varlist . COMMA var
+
+    SEMICOLON       shift and go to state 24
+    COMMA           shift and go to state 25
+
+
+state 16
+
+    (14) func -> type ID . LPAREN params RPAREN LBRACE funcbody RBRACE
+    (12) var -> ID .
+    (13) var -> ID . LSQUARE NUMBER RSQUARE
+
+    LPAREN          shift and go to state 26
+    SEMICOLON       reduce using rule 12 (var -> ID .)
+    COMMA           reduce using rule 12 (var -> ID .)
+    LSQUARE         shift and go to state 27
+
+
+state 17
+
+    (11) varlist -> var .
+
+    SEMICOLON       reduce using rule 11 (varlist -> var .)
+    COMMA           reduce using rule 11 (varlist -> var .)
+
+
+state 18
+
+    (25) stmt -> ID EQUALS . expr SEMICOLON
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 29
+
+state 19
+
+    (26) stmt -> ID LSQUARE . expr RSQUARE EQUALS expr SEMICOLON
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 32
+
+state 20
+
+    (36) stmt -> ID LPAREN . call_args RPAREN SEMICOLON
+    (37) call_args -> . call_args COMMA expr
+    (38) call_args -> . expr
+    (39) call_args -> . empty
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+    (55) empty -> .
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+    RPAREN          reduce using rule 55 (empty -> .)
+    COMMA           reduce using rule 55 (empty -> .)
+
+    call_args                      shift and go to state 33
+    expr                           shift and go to state 34
+    empty                          shift and go to state 35
+
+state 21
+
+    (27) stmt -> PRINT LPAREN . expr RPAREN SEMICOLON
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 36
+
+state 22
+
+    (28) stmt -> IF LPAREN . expr RPAREN LBRACE block RBRACE else_block
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 37
+
+state 23
+
+    (35) stmt -> WHILE LPAREN . expr RPAREN LBRACE block RBRACE
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 38
+
+state 24
+
+    (7) decl -> type varlist SEMICOLON .
+
+    ID              reduce using rule 7 (decl -> type varlist SEMICOLON .)
+    PRINT           reduce using rule 7 (decl -> type varlist SEMICOLON .)
+    IF              reduce using rule 7 (decl -> type varlist SEMICOLON .)
+    WHILE           reduce using rule 7 (decl -> type varlist SEMICOLON .)
+    INT             reduce using rule 7 (decl -> type varlist SEMICOLON .)
+    FLOAT           reduce using rule 7 (decl -> type varlist SEMICOLON .)
+    $end            reduce using rule 7 (decl -> type varlist SEMICOLON .)
+
+
+state 25
+
+    (10) varlist -> varlist COMMA . var
+    (12) var -> . ID
+    (13) var -> . ID LSQUARE NUMBER RSQUARE
+
+    ID              shift and go to state 40
+
+    var                            shift and go to state 39
+
+state 26
+
+    (14) func -> type ID LPAREN . params RPAREN LBRACE funcbody RBRACE
+    (15) params -> . paramlist
+    (16) params -> . empty
+    (17) paramlist -> . paramlist COMMA param
+    (18) paramlist -> . param
+    (55) empty -> .
+    (19) param -> . type ID
+    (8) type -> . INT
+    (9) type -> . FLOAT
+
+    RPAREN          reduce using rule 55 (empty -> .)
+    INT             shift and go to state 12
+    FLOAT           shift and go to state 13
+
+    type                           shift and go to state 41
+    params                         shift and go to state 42
+    paramlist                      shift and go to state 43
+    empty                          shift and go to state 44
+    param                          shift and go to state 45
+
+state 27
+
+    (13) var -> ID LSQUARE . NUMBER RSQUARE
+
+    NUMBER          shift and go to state 46
+
+
+state 28
+
+    (52) expr -> ID .
+    (53) expr -> ID . LSQUARE expr RSQUARE
+    (54) expr -> ID . LPAREN call_args RPAREN
+
+    SEMICOLON       reduce using rule 52 (expr -> ID .)
+    PLUS            reduce using rule 52 (expr -> ID .)
+    MINUS           reduce using rule 52 (expr -> ID .)
+    TIMES           reduce using rule 52 (expr -> ID .)
+    DIVIDE          reduce using rule 52 (expr -> ID .)
+    EQ              reduce using rule 52 (expr -> ID .)
+    NE              reduce using rule 52 (expr -> ID .)
+    LT              reduce using rule 52 (expr -> ID .)
+    GT              reduce using rule 52 (expr -> ID .)
+    LE              reduce using rule 52 (expr -> ID .)
+    GE              reduce using rule 52 (expr -> ID .)
+    RSQUARE         reduce using rule 52 (expr -> ID .)
+    RPAREN          reduce using rule 52 (expr -> ID .)
+    COMMA           reduce using rule 52 (expr -> ID .)
+    LSQUARE         shift and go to state 47
+    LPAREN          shift and go to state 48
+
+
+state 29
+
+    (25) stmt -> ID EQUALS expr . SEMICOLON
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       shift and go to state 49
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 30
+
+    (50) expr -> FNUMBER .
+
+    SEMICOLON       reduce using rule 50 (expr -> FNUMBER .)
+    PLUS            reduce using rule 50 (expr -> FNUMBER .)
+    MINUS           reduce using rule 50 (expr -> FNUMBER .)
+    TIMES           reduce using rule 50 (expr -> FNUMBER .)
+    DIVIDE          reduce using rule 50 (expr -> FNUMBER .)
+    EQ              reduce using rule 50 (expr -> FNUMBER .)
+    NE              reduce using rule 50 (expr -> FNUMBER .)
+    LT              reduce using rule 50 (expr -> FNUMBER .)
+    GT              reduce using rule 50 (expr -> FNUMBER .)
+    LE              reduce using rule 50 (expr -> FNUMBER .)
+    GE              reduce using rule 50 (expr -> FNUMBER .)
+    RSQUARE         reduce using rule 50 (expr -> FNUMBER .)
+    RPAREN          reduce using rule 50 (expr -> FNUMBER .)
+    COMMA           reduce using rule 50 (expr -> FNUMBER .)
+
+
+state 31
+
+    (51) expr -> NUMBER .
+
+    SEMICOLON       reduce using rule 51 (expr -> NUMBER .)
+    PLUS            reduce using rule 51 (expr -> NUMBER .)
+    MINUS           reduce using rule 51 (expr -> NUMBER .)
+    TIMES           reduce using rule 51 (expr -> NUMBER .)
+    DIVIDE          reduce using rule 51 (expr -> NUMBER .)
+    EQ              reduce using rule 51 (expr -> NUMBER .)
+    NE              reduce using rule 51 (expr -> NUMBER .)
+    LT              reduce using rule 51 (expr -> NUMBER .)
+    GT              reduce using rule 51 (expr -> NUMBER .)
+    LE              reduce using rule 51 (expr -> NUMBER .)
+    GE              reduce using rule 51 (expr -> NUMBER .)
+    RSQUARE         reduce using rule 51 (expr -> NUMBER .)
+    RPAREN          reduce using rule 51 (expr -> NUMBER .)
+    COMMA           reduce using rule 51 (expr -> NUMBER .)
+
+
+state 32
+
+    (26) stmt -> ID LSQUARE expr . RSQUARE EQUALS expr SEMICOLON
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    RSQUARE         shift and go to state 60
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 33
+
+    (36) stmt -> ID LPAREN call_args . RPAREN SEMICOLON
+    (37) call_args -> call_args . COMMA expr
+
+    RPAREN          shift and go to state 61
+    COMMA           shift and go to state 62
+
+
+state 34
+
+    (38) call_args -> expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    RPAREN          reduce using rule 38 (call_args -> expr .)
+    COMMA           reduce using rule 38 (call_args -> expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 35
+
+    (39) call_args -> empty .
+
+    RPAREN          reduce using rule 39 (call_args -> empty .)
+    COMMA           reduce using rule 39 (call_args -> empty .)
+
+
+state 36
+
+    (27) stmt -> PRINT LPAREN expr . RPAREN SEMICOLON
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    RPAREN          shift and go to state 63
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 37
+
+    (28) stmt -> IF LPAREN expr . RPAREN LBRACE block RBRACE else_block
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    RPAREN          shift and go to state 64
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 38
+
+    (35) stmt -> WHILE LPAREN expr . RPAREN LBRACE block RBRACE
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    RPAREN          shift and go to state 65
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 39
+
+    (10) varlist -> varlist COMMA var .
+
+    SEMICOLON       reduce using rule 10 (varlist -> varlist COMMA var .)
+    COMMA           reduce using rule 10 (varlist -> varlist COMMA var .)
+
+
+state 40
+
+    (12) var -> ID .
+    (13) var -> ID . LSQUARE NUMBER RSQUARE
+
+    SEMICOLON       reduce using rule 12 (var -> ID .)
+    COMMA           reduce using rule 12 (var -> ID .)
+    LSQUARE         shift and go to state 27
+
+
+state 41
+
+    (19) param -> type . ID
+
+    ID              shift and go to state 66
+
+
+state 42
+
+    (14) func -> type ID LPAREN params . RPAREN LBRACE funcbody RBRACE
+
+    RPAREN          shift and go to state 67
+
+
+state 43
+
+    (15) params -> paramlist .
+    (17) paramlist -> paramlist . COMMA param
+
+    RPAREN          reduce using rule 15 (params -> paramlist .)
+    COMMA           shift and go to state 68
+
+
+state 44
+
+    (16) params -> empty .
+
+    RPAREN          reduce using rule 16 (params -> empty .)
+
+
+state 45
+
+    (18) paramlist -> param .
+
+    COMMA           reduce using rule 18 (paramlist -> param .)
+    RPAREN          reduce using rule 18 (paramlist -> param .)
+
+
+state 46
+
+    (13) var -> ID LSQUARE NUMBER . RSQUARE
+
+    RSQUARE         shift and go to state 69
+
+
+state 47
+
+    (53) expr -> ID LSQUARE . expr RSQUARE
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 70
+
+state 48
+
+    (54) expr -> ID LPAREN . call_args RPAREN
+    (37) call_args -> . call_args COMMA expr
+    (38) call_args -> . expr
+    (39) call_args -> . empty
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+    (55) empty -> .
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+    RPAREN          reduce using rule 55 (empty -> .)
+    COMMA           reduce using rule 55 (empty -> .)
+
+    call_args                      shift and go to state 71
+    expr                           shift and go to state 34
+    empty                          shift and go to state 35
+
+state 49
+
+    (25) stmt -> ID EQUALS expr SEMICOLON .
+
+    ID              reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    PRINT           reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    IF              reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    WHILE           reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    INT             reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    FLOAT           reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    $end            reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    RBRACE          reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+    RETURN          reduce using rule 25 (stmt -> ID EQUALS expr SEMICOLON .)
+
+
+state 50
+
+    (40) expr -> expr PLUS . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 72
+
+state 51
+
+    (41) expr -> expr MINUS . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 73
+
+state 52
+
+    (42) expr -> expr TIMES . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 74
+
+state 53
+
+    (43) expr -> expr DIVIDE . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 75
+
+state 54
+
+    (44) expr -> expr EQ . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 76
+
+state 55
+
+    (45) expr -> expr NE . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 77
+
+state 56
+
+    (46) expr -> expr LT . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 78
+
+state 57
+
+    (47) expr -> expr GT . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 79
+
+state 58
+
+    (48) expr -> expr LE . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 80
+
+state 59
+
+    (49) expr -> expr GE . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 81
+
+state 60
+
+    (26) stmt -> ID LSQUARE expr RSQUARE . EQUALS expr SEMICOLON
+
+    EQUALS          shift and go to state 82
+
+
+state 61
+
+    (36) stmt -> ID LPAREN call_args RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 83
+
+
+state 62
+
+    (37) call_args -> call_args COMMA . expr
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 84
+
+state 63
+
+    (27) stmt -> PRINT LPAREN expr RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 85
+
+
+state 64
+
+    (28) stmt -> IF LPAREN expr RPAREN . LBRACE block RBRACE else_block
+
+    LBRACE          shift and go to state 86
+
+
+state 65
+
+    (35) stmt -> WHILE LPAREN expr RPAREN . LBRACE block RBRACE
+
+    LBRACE          shift and go to state 87
+
+
+state 66
+
+    (19) param -> type ID .
+
+    COMMA           reduce using rule 19 (param -> type ID .)
+    RPAREN          reduce using rule 19 (param -> type ID .)
+
+
+state 67
+
+    (14) func -> type ID LPAREN params RPAREN . LBRACE funcbody RBRACE
+
+    LBRACE          shift and go to state 88
+
+
+state 68
+
+    (17) paramlist -> paramlist COMMA . param
+    (19) param -> . type ID
+    (8) type -> . INT
+    (9) type -> . FLOAT
+
+    INT             shift and go to state 12
+    FLOAT           shift and go to state 13
+
+    param                          shift and go to state 89
+    type                           shift and go to state 41
+
+state 69
+
+    (13) var -> ID LSQUARE NUMBER RSQUARE .
+
+    SEMICOLON       reduce using rule 13 (var -> ID LSQUARE NUMBER RSQUARE .)
+    COMMA           reduce using rule 13 (var -> ID LSQUARE NUMBER RSQUARE .)
+
+
+state 70
+
+    (53) expr -> ID LSQUARE expr . RSQUARE
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    RSQUARE         shift and go to state 90
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 71
+
+    (54) expr -> ID LPAREN call_args . RPAREN
+    (37) call_args -> call_args . COMMA expr
+
+    RPAREN          shift and go to state 91
+    COMMA           shift and go to state 62
+
+
+state 72
+
+    (40) expr -> expr PLUS expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 40 (expr -> expr PLUS expr .)
+    PLUS            reduce using rule 40 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 40 (expr -> expr PLUS expr .)
+    EQ              reduce using rule 40 (expr -> expr PLUS expr .)
+    NE              reduce using rule 40 (expr -> expr PLUS expr .)
+    LT              reduce using rule 40 (expr -> expr PLUS expr .)
+    GT              reduce using rule 40 (expr -> expr PLUS expr .)
+    LE              reduce using rule 40 (expr -> expr PLUS expr .)
+    GE              reduce using rule 40 (expr -> expr PLUS expr .)
+    RSQUARE         reduce using rule 40 (expr -> expr PLUS expr .)
+    RPAREN          reduce using rule 40 (expr -> expr PLUS expr .)
+    COMMA           reduce using rule 40 (expr -> expr PLUS expr .)
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! TIMES           [ reduce using rule 40 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 40 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 73
+
+    (41) expr -> expr MINUS expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 41 (expr -> expr MINUS expr .)
+    PLUS            reduce using rule 41 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 41 (expr -> expr MINUS expr .)
+    EQ              reduce using rule 41 (expr -> expr MINUS expr .)
+    NE              reduce using rule 41 (expr -> expr MINUS expr .)
+    LT              reduce using rule 41 (expr -> expr MINUS expr .)
+    GT              reduce using rule 41 (expr -> expr MINUS expr .)
+    LE              reduce using rule 41 (expr -> expr MINUS expr .)
+    GE              reduce using rule 41 (expr -> expr MINUS expr .)
+    RSQUARE         reduce using rule 41 (expr -> expr MINUS expr .)
+    RPAREN          reduce using rule 41 (expr -> expr MINUS expr .)
+    COMMA           reduce using rule 41 (expr -> expr MINUS expr .)
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! TIMES           [ reduce using rule 41 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 41 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 74
+
+    (42) expr -> expr TIMES expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 42 (expr -> expr TIMES expr .)
+    PLUS            reduce using rule 42 (expr -> expr TIMES expr .)
+    MINUS           reduce using rule 42 (expr -> expr TIMES expr .)
+    TIMES           reduce using rule 42 (expr -> expr TIMES expr .)
+    DIVIDE          reduce using rule 42 (expr -> expr TIMES expr .)
+    EQ              reduce using rule 42 (expr -> expr TIMES expr .)
+    NE              reduce using rule 42 (expr -> expr TIMES expr .)
+    LT              reduce using rule 42 (expr -> expr TIMES expr .)
+    GT              reduce using rule 42 (expr -> expr TIMES expr .)
+    LE              reduce using rule 42 (expr -> expr TIMES expr .)
+    GE              reduce using rule 42 (expr -> expr TIMES expr .)
+    RSQUARE         reduce using rule 42 (expr -> expr TIMES expr .)
+    RPAREN          reduce using rule 42 (expr -> expr TIMES expr .)
+    COMMA           reduce using rule 42 (expr -> expr TIMES expr .)
+
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! TIMES           [ shift and go to state 52 ]
+  ! DIVIDE          [ shift and go to state 53 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 75
+
+    (43) expr -> expr DIVIDE expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 43 (expr -> expr DIVIDE expr .)
+    PLUS            reduce using rule 43 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 43 (expr -> expr DIVIDE expr .)
+    TIMES           reduce using rule 43 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 43 (expr -> expr DIVIDE expr .)
+    EQ              reduce using rule 43 (expr -> expr DIVIDE expr .)
+    NE              reduce using rule 43 (expr -> expr DIVIDE expr .)
+    LT              reduce using rule 43 (expr -> expr DIVIDE expr .)
+    GT              reduce using rule 43 (expr -> expr DIVIDE expr .)
+    LE              reduce using rule 43 (expr -> expr DIVIDE expr .)
+    GE              reduce using rule 43 (expr -> expr DIVIDE expr .)
+    RSQUARE         reduce using rule 43 (expr -> expr DIVIDE expr .)
+    RPAREN          reduce using rule 43 (expr -> expr DIVIDE expr .)
+    COMMA           reduce using rule 43 (expr -> expr DIVIDE expr .)
+
+  ! PLUS            [ shift and go to state 50 ]
+  ! MINUS           [ shift and go to state 51 ]
+  ! TIMES           [ shift and go to state 52 ]
+  ! DIVIDE          [ shift and go to state 53 ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 76
+
+    (44) expr -> expr EQ expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 44 (expr -> expr EQ expr .)
+    EQ              reduce using rule 44 (expr -> expr EQ expr .)
+    NE              reduce using rule 44 (expr -> expr EQ expr .)
+    LT              reduce using rule 44 (expr -> expr EQ expr .)
+    GT              reduce using rule 44 (expr -> expr EQ expr .)
+    LE              reduce using rule 44 (expr -> expr EQ expr .)
+    GE              reduce using rule 44 (expr -> expr EQ expr .)
+    RSQUARE         reduce using rule 44 (expr -> expr EQ expr .)
+    RPAREN          reduce using rule 44 (expr -> expr EQ expr .)
+    COMMA           reduce using rule 44 (expr -> expr EQ expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! PLUS            [ reduce using rule 44 (expr -> expr EQ expr .) ]
+  ! MINUS           [ reduce using rule 44 (expr -> expr EQ expr .) ]
+  ! TIMES           [ reduce using rule 44 (expr -> expr EQ expr .) ]
+  ! DIVIDE          [ reduce using rule 44 (expr -> expr EQ expr .) ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 77
+
+    (45) expr -> expr NE expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 45 (expr -> expr NE expr .)
+    EQ              reduce using rule 45 (expr -> expr NE expr .)
+    NE              reduce using rule 45 (expr -> expr NE expr .)
+    LT              reduce using rule 45 (expr -> expr NE expr .)
+    GT              reduce using rule 45 (expr -> expr NE expr .)
+    LE              reduce using rule 45 (expr -> expr NE expr .)
+    GE              reduce using rule 45 (expr -> expr NE expr .)
+    RSQUARE         reduce using rule 45 (expr -> expr NE expr .)
+    RPAREN          reduce using rule 45 (expr -> expr NE expr .)
+    COMMA           reduce using rule 45 (expr -> expr NE expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! PLUS            [ reduce using rule 45 (expr -> expr NE expr .) ]
+  ! MINUS           [ reduce using rule 45 (expr -> expr NE expr .) ]
+  ! TIMES           [ reduce using rule 45 (expr -> expr NE expr .) ]
+  ! DIVIDE          [ reduce using rule 45 (expr -> expr NE expr .) ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 78
+
+    (46) expr -> expr LT expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 46 (expr -> expr LT expr .)
+    EQ              reduce using rule 46 (expr -> expr LT expr .)
+    NE              reduce using rule 46 (expr -> expr LT expr .)
+    LT              reduce using rule 46 (expr -> expr LT expr .)
+    GT              reduce using rule 46 (expr -> expr LT expr .)
+    LE              reduce using rule 46 (expr -> expr LT expr .)
+    GE              reduce using rule 46 (expr -> expr LT expr .)
+    RSQUARE         reduce using rule 46 (expr -> expr LT expr .)
+    RPAREN          reduce using rule 46 (expr -> expr LT expr .)
+    COMMA           reduce using rule 46 (expr -> expr LT expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! PLUS            [ reduce using rule 46 (expr -> expr LT expr .) ]
+  ! MINUS           [ reduce using rule 46 (expr -> expr LT expr .) ]
+  ! TIMES           [ reduce using rule 46 (expr -> expr LT expr .) ]
+  ! DIVIDE          [ reduce using rule 46 (expr -> expr LT expr .) ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 79
+
+    (47) expr -> expr GT expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 47 (expr -> expr GT expr .)
+    EQ              reduce using rule 47 (expr -> expr GT expr .)
+    NE              reduce using rule 47 (expr -> expr GT expr .)
+    LT              reduce using rule 47 (expr -> expr GT expr .)
+    GT              reduce using rule 47 (expr -> expr GT expr .)
+    LE              reduce using rule 47 (expr -> expr GT expr .)
+    GE              reduce using rule 47 (expr -> expr GT expr .)
+    RSQUARE         reduce using rule 47 (expr -> expr GT expr .)
+    RPAREN          reduce using rule 47 (expr -> expr GT expr .)
+    COMMA           reduce using rule 47 (expr -> expr GT expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! PLUS            [ reduce using rule 47 (expr -> expr GT expr .) ]
+  ! MINUS           [ reduce using rule 47 (expr -> expr GT expr .) ]
+  ! TIMES           [ reduce using rule 47 (expr -> expr GT expr .) ]
+  ! DIVIDE          [ reduce using rule 47 (expr -> expr GT expr .) ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 80
+
+    (48) expr -> expr LE expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 48 (expr -> expr LE expr .)
+    EQ              reduce using rule 48 (expr -> expr LE expr .)
+    NE              reduce using rule 48 (expr -> expr LE expr .)
+    LT              reduce using rule 48 (expr -> expr LE expr .)
+    GT              reduce using rule 48 (expr -> expr LE expr .)
+    LE              reduce using rule 48 (expr -> expr LE expr .)
+    GE              reduce using rule 48 (expr -> expr LE expr .)
+    RSQUARE         reduce using rule 48 (expr -> expr LE expr .)
+    RPAREN          reduce using rule 48 (expr -> expr LE expr .)
+    COMMA           reduce using rule 48 (expr -> expr LE expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! PLUS            [ reduce using rule 48 (expr -> expr LE expr .) ]
+  ! MINUS           [ reduce using rule 48 (expr -> expr LE expr .) ]
+  ! TIMES           [ reduce using rule 48 (expr -> expr LE expr .) ]
+  ! DIVIDE          [ reduce using rule 48 (expr -> expr LE expr .) ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 81
+
+    (49) expr -> expr GE expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       reduce using rule 49 (expr -> expr GE expr .)
+    EQ              reduce using rule 49 (expr -> expr GE expr .)
+    NE              reduce using rule 49 (expr -> expr GE expr .)
+    LT              reduce using rule 49 (expr -> expr GE expr .)
+    GT              reduce using rule 49 (expr -> expr GE expr .)
+    LE              reduce using rule 49 (expr -> expr GE expr .)
+    GE              reduce using rule 49 (expr -> expr GE expr .)
+    RSQUARE         reduce using rule 49 (expr -> expr GE expr .)
+    RPAREN          reduce using rule 49 (expr -> expr GE expr .)
+    COMMA           reduce using rule 49 (expr -> expr GE expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+
+  ! PLUS            [ reduce using rule 49 (expr -> expr GE expr .) ]
+  ! MINUS           [ reduce using rule 49 (expr -> expr GE expr .) ]
+  ! TIMES           [ reduce using rule 49 (expr -> expr GE expr .) ]
+  ! DIVIDE          [ reduce using rule 49 (expr -> expr GE expr .) ]
+  ! EQ              [ shift and go to state 54 ]
+  ! NE              [ shift and go to state 55 ]
+  ! LT              [ shift and go to state 56 ]
+  ! GT              [ shift and go to state 57 ]
+  ! LE              [ shift and go to state 58 ]
+  ! GE              [ shift and go to state 59 ]
+
+
+state 82
+
+    (26) stmt -> ID LSQUARE expr RSQUARE EQUALS . expr SEMICOLON
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 92
+
+state 83
+
+    (36) stmt -> ID LPAREN call_args RPAREN SEMICOLON .
+
+    ID              reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    PRINT           reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    IF              reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    WHILE           reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    INT             reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    FLOAT           reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    $end            reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+    RETURN          reduce using rule 36 (stmt -> ID LPAREN call_args RPAREN SEMICOLON .)
+
+
+state 84
+
+    (37) call_args -> call_args COMMA expr .
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    RPAREN          reduce using rule 37 (call_args -> call_args COMMA expr .)
+    COMMA           reduce using rule 37 (call_args -> call_args COMMA expr .)
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 85
+
+    (27) stmt -> PRINT LPAREN expr RPAREN SEMICOLON .
+
+    ID              reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    PRINT           reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    IF              reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    WHILE           reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    INT             reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    FLOAT           reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    $end            reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+    RETURN          reduce using rule 27 (stmt -> PRINT LPAREN expr RPAREN SEMICOLON .)
+
+
+state 86
+
+    (28) stmt -> IF LPAREN expr RPAREN LBRACE . block RBRACE else_block
+    (31) block -> . stmts
+    (32) block -> . empty
+    (33) stmts -> . stmts stmt
+    (34) stmts -> . stmt
+    (55) empty -> .
+    (25) stmt -> . ID EQUALS expr SEMICOLON
+    (26) stmt -> . ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (27) stmt -> . PRINT LPAREN expr RPAREN SEMICOLON
+    (28) stmt -> . IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+    (35) stmt -> . WHILE LPAREN expr RPAREN LBRACE block RBRACE
+    (36) stmt -> . ID LPAREN call_args RPAREN SEMICOLON
+
+    RBRACE          reduce using rule 55 (empty -> .)
+    ID              shift and go to state 8
+    PRINT           shift and go to state 9
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+
+    block                          shift and go to state 93
+    stmts                          shift and go to state 94
+    empty                          shift and go to state 95
+    stmt                           shift and go to state 96
+
+state 87
+
+    (35) stmt -> WHILE LPAREN expr RPAREN LBRACE . block RBRACE
+    (31) block -> . stmts
+    (32) block -> . empty
+    (33) stmts -> . stmts stmt
+    (34) stmts -> . stmt
+    (55) empty -> .
+    (25) stmt -> . ID EQUALS expr SEMICOLON
+    (26) stmt -> . ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (27) stmt -> . PRINT LPAREN expr RPAREN SEMICOLON
+    (28) stmt -> . IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+    (35) stmt -> . WHILE LPAREN expr RPAREN LBRACE block RBRACE
+    (36) stmt -> . ID LPAREN call_args RPAREN SEMICOLON
+
+    RBRACE          reduce using rule 55 (empty -> .)
+    ID              shift and go to state 8
+    PRINT           shift and go to state 9
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+
+    block                          shift and go to state 97
+    stmts                          shift and go to state 94
+    empty                          shift and go to state 95
+    stmt                           shift and go to state 96
+
+state 88
+
+    (14) func -> type ID LPAREN params RPAREN LBRACE . funcbody RBRACE
+    (20) funcbody -> . funcstmts func_return
+    (21) funcstmts -> . funcstmts stmt
+    (22) funcstmts -> . empty
+    (55) empty -> .
+
+    RETURN          reduce using rule 55 (empty -> .)
+    ID              reduce using rule 55 (empty -> .)
+    PRINT           reduce using rule 55 (empty -> .)
+    IF              reduce using rule 55 (empty -> .)
+    WHILE           reduce using rule 55 (empty -> .)
+    RBRACE          reduce using rule 55 (empty -> .)
+
+    funcbody                       shift and go to state 98
+    funcstmts                      shift and go to state 99
+    empty                          shift and go to state 100
+
+state 89
+
+    (17) paramlist -> paramlist COMMA param .
+
+    COMMA           reduce using rule 17 (paramlist -> paramlist COMMA param .)
+    RPAREN          reduce using rule 17 (paramlist -> paramlist COMMA param .)
+
+
+state 90
+
+    (53) expr -> ID LSQUARE expr RSQUARE .
+
+    SEMICOLON       reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    PLUS            reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    MINUS           reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    TIMES           reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    DIVIDE          reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    EQ              reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    NE              reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    LT              reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    GT              reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    LE              reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    GE              reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    RSQUARE         reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    RPAREN          reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+    COMMA           reduce using rule 53 (expr -> ID LSQUARE expr RSQUARE .)
+
+
+state 91
+
+    (54) expr -> ID LPAREN call_args RPAREN .
+
+    SEMICOLON       reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    PLUS            reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    MINUS           reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    TIMES           reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    DIVIDE          reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    EQ              reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    NE              reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    LT              reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    GT              reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    LE              reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    GE              reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    RSQUARE         reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    RPAREN          reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+    COMMA           reduce using rule 54 (expr -> ID LPAREN call_args RPAREN .)
+
+
+state 92
+
+    (26) stmt -> ID LSQUARE expr RSQUARE EQUALS expr . SEMICOLON
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       shift and go to state 101
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 93
+
+    (28) stmt -> IF LPAREN expr RPAREN LBRACE block . RBRACE else_block
+
+    RBRACE          shift and go to state 102
+
+
+state 94
+
+    (31) block -> stmts .
+    (33) stmts -> stmts . stmt
+    (25) stmt -> . ID EQUALS expr SEMICOLON
+    (26) stmt -> . ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (27) stmt -> . PRINT LPAREN expr RPAREN SEMICOLON
+    (28) stmt -> . IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+    (35) stmt -> . WHILE LPAREN expr RPAREN LBRACE block RBRACE
+    (36) stmt -> . ID LPAREN call_args RPAREN SEMICOLON
+
+    RBRACE          reduce using rule 31 (block -> stmts .)
+    ID              shift and go to state 8
+    PRINT           shift and go to state 9
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+
+    stmt                           shift and go to state 103
+
+state 95
+
+    (32) block -> empty .
+
+    RBRACE          reduce using rule 32 (block -> empty .)
+
+
+state 96
+
+    (34) stmts -> stmt .
+
+    ID              reduce using rule 34 (stmts -> stmt .)
+    PRINT           reduce using rule 34 (stmts -> stmt .)
+    IF              reduce using rule 34 (stmts -> stmt .)
+    WHILE           reduce using rule 34 (stmts -> stmt .)
+    RBRACE          reduce using rule 34 (stmts -> stmt .)
+
+
+state 97
+
+    (35) stmt -> WHILE LPAREN expr RPAREN LBRACE block . RBRACE
+
+    RBRACE          shift and go to state 104
+
+
+state 98
+
+    (14) func -> type ID LPAREN params RPAREN LBRACE funcbody . RBRACE
+
+    RBRACE          shift and go to state 105
+
+
+state 99
+
+    (20) funcbody -> funcstmts . func_return
+    (21) funcstmts -> funcstmts . stmt
+    (23) func_return -> . RETURN expr SEMICOLON
+    (24) func_return -> . empty
+    (25) stmt -> . ID EQUALS expr SEMICOLON
+    (26) stmt -> . ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (27) stmt -> . PRINT LPAREN expr RPAREN SEMICOLON
+    (28) stmt -> . IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+    (35) stmt -> . WHILE LPAREN expr RPAREN LBRACE block RBRACE
+    (36) stmt -> . ID LPAREN call_args RPAREN SEMICOLON
+    (55) empty -> .
+
+    RETURN          shift and go to state 108
+    ID              shift and go to state 8
+    PRINT           shift and go to state 9
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+    RBRACE          reduce using rule 55 (empty -> .)
+
+    func_return                    shift and go to state 106
+    stmt                           shift and go to state 107
+    empty                          shift and go to state 109
+
+state 100
+
+    (22) funcstmts -> empty .
+
+    RETURN          reduce using rule 22 (funcstmts -> empty .)
+    ID              reduce using rule 22 (funcstmts -> empty .)
+    PRINT           reduce using rule 22 (funcstmts -> empty .)
+    IF              reduce using rule 22 (funcstmts -> empty .)
+    WHILE           reduce using rule 22 (funcstmts -> empty .)
+    RBRACE          reduce using rule 22 (funcstmts -> empty .)
+
+
+state 101
+
+    (26) stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .
+
+    ID              reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    PRINT           reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    IF              reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    WHILE           reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    INT             reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    FLOAT           reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    $end            reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    RBRACE          reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+    RETURN          reduce using rule 26 (stmt -> ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON .)
+
+
+state 102
+
+    (28) stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE . else_block
+    (29) else_block -> . ELSE LBRACE block RBRACE
+    (30) else_block -> . empty
+    (55) empty -> .
+
+    ELSE            shift and go to state 111
+    ID              reduce using rule 55 (empty -> .)
+    PRINT           reduce using rule 55 (empty -> .)
+    IF              reduce using rule 55 (empty -> .)
+    WHILE           reduce using rule 55 (empty -> .)
+    INT             reduce using rule 55 (empty -> .)
+    FLOAT           reduce using rule 55 (empty -> .)
+    $end            reduce using rule 55 (empty -> .)
+    RBRACE          reduce using rule 55 (empty -> .)
+    RETURN          reduce using rule 55 (empty -> .)
+
+    else_block                     shift and go to state 110
+    empty                          shift and go to state 112
+
+state 103
+
+    (33) stmts -> stmts stmt .
+
+    ID              reduce using rule 33 (stmts -> stmts stmt .)
+    PRINT           reduce using rule 33 (stmts -> stmts stmt .)
+    IF              reduce using rule 33 (stmts -> stmts stmt .)
+    WHILE           reduce using rule 33 (stmts -> stmts stmt .)
+    RBRACE          reduce using rule 33 (stmts -> stmts stmt .)
+
+
+state 104
+
+    (35) stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .
+
+    ID              reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    PRINT           reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    IF              reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    WHILE           reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    INT             reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    FLOAT           reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    $end            reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    RBRACE          reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+    RETURN          reduce using rule 35 (stmt -> WHILE LPAREN expr RPAREN LBRACE block RBRACE .)
+
+
+state 105
+
+    (14) func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .
+
+    ID              reduce using rule 14 (func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .)
+    PRINT           reduce using rule 14 (func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .)
+    IF              reduce using rule 14 (func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .)
+    WHILE           reduce using rule 14 (func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .)
+    INT             reduce using rule 14 (func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .)
+    FLOAT           reduce using rule 14 (func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .)
+    $end            reduce using rule 14 (func -> type ID LPAREN params RPAREN LBRACE funcbody RBRACE .)
+
+
+state 106
+
+    (20) funcbody -> funcstmts func_return .
+
+    RBRACE          reduce using rule 20 (funcbody -> funcstmts func_return .)
+
+
+state 107
+
+    (21) funcstmts -> funcstmts stmt .
+
+    RETURN          reduce using rule 21 (funcstmts -> funcstmts stmt .)
+    ID              reduce using rule 21 (funcstmts -> funcstmts stmt .)
+    PRINT           reduce using rule 21 (funcstmts -> funcstmts stmt .)
+    IF              reduce using rule 21 (funcstmts -> funcstmts stmt .)
+    WHILE           reduce using rule 21 (funcstmts -> funcstmts stmt .)
+    RBRACE          reduce using rule 21 (funcstmts -> funcstmts stmt .)
+
+
+state 108
+
+    (23) func_return -> RETURN . expr SEMICOLON
+    (40) expr -> . expr PLUS expr
+    (41) expr -> . expr MINUS expr
+    (42) expr -> . expr TIMES expr
+    (43) expr -> . expr DIVIDE expr
+    (44) expr -> . expr EQ expr
+    (45) expr -> . expr NE expr
+    (46) expr -> . expr LT expr
+    (47) expr -> . expr GT expr
+    (48) expr -> . expr LE expr
+    (49) expr -> . expr GE expr
+    (50) expr -> . FNUMBER
+    (51) expr -> . NUMBER
+    (52) expr -> . ID
+    (53) expr -> . ID LSQUARE expr RSQUARE
+    (54) expr -> . ID LPAREN call_args RPAREN
+
+    FNUMBER         shift and go to state 30
+    NUMBER          shift and go to state 31
+    ID              shift and go to state 28
+
+    expr                           shift and go to state 113
+
+state 109
+
+    (24) func_return -> empty .
+
+    RBRACE          reduce using rule 24 (func_return -> empty .)
+
+
+state 110
+
+    (28) stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .
+
+    ID              reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    PRINT           reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    IF              reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    WHILE           reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    INT             reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    FLOAT           reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    $end            reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    RBRACE          reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+    RETURN          reduce using rule 28 (stmt -> IF LPAREN expr RPAREN LBRACE block RBRACE else_block .)
+
+
+state 111
+
+    (29) else_block -> ELSE . LBRACE block RBRACE
+
+    LBRACE          shift and go to state 114
+
+
+state 112
+
+    (30) else_block -> empty .
+
+    ID              reduce using rule 30 (else_block -> empty .)
+    PRINT           reduce using rule 30 (else_block -> empty .)
+    IF              reduce using rule 30 (else_block -> empty .)
+    WHILE           reduce using rule 30 (else_block -> empty .)
+    INT             reduce using rule 30 (else_block -> empty .)
+    FLOAT           reduce using rule 30 (else_block -> empty .)
+    $end            reduce using rule 30 (else_block -> empty .)
+    RBRACE          reduce using rule 30 (else_block -> empty .)
+    RETURN          reduce using rule 30 (else_block -> empty .)
+
+
+state 113
+
+    (23) func_return -> RETURN expr . SEMICOLON
+    (40) expr -> expr . PLUS expr
+    (41) expr -> expr . MINUS expr
+    (42) expr -> expr . TIMES expr
+    (43) expr -> expr . DIVIDE expr
+    (44) expr -> expr . EQ expr
+    (45) expr -> expr . NE expr
+    (46) expr -> expr . LT expr
+    (47) expr -> expr . GT expr
+    (48) expr -> expr . LE expr
+    (49) expr -> expr . GE expr
+
+    SEMICOLON       shift and go to state 115
+    PLUS            shift and go to state 50
+    MINUS           shift and go to state 51
+    TIMES           shift and go to state 52
+    DIVIDE          shift and go to state 53
+    EQ              shift and go to state 54
+    NE              shift and go to state 55
+    LT              shift and go to state 56
+    GT              shift and go to state 57
+    LE              shift and go to state 58
+    GE              shift and go to state 59
+
+
+state 114
+
+    (29) else_block -> ELSE LBRACE . block RBRACE
+    (31) block -> . stmts
+    (32) block -> . empty
+    (33) stmts -> . stmts stmt
+    (34) stmts -> . stmt
+    (55) empty -> .
+    (25) stmt -> . ID EQUALS expr SEMICOLON
+    (26) stmt -> . ID LSQUARE expr RSQUARE EQUALS expr SEMICOLON
+    (27) stmt -> . PRINT LPAREN expr RPAREN SEMICOLON
+    (28) stmt -> . IF LPAREN expr RPAREN LBRACE block RBRACE else_block
+    (35) stmt -> . WHILE LPAREN expr RPAREN LBRACE block RBRACE
+    (36) stmt -> . ID LPAREN call_args RPAREN SEMICOLON
+
+    RBRACE          reduce using rule 55 (empty -> .)
+    ID              shift and go to state 8
+    PRINT           shift and go to state 9
+    IF              shift and go to state 10
+    WHILE           shift and go to state 11
+
+    block                          shift and go to state 116
+    stmts                          shift and go to state 94
+    empty                          shift and go to state 95
+    stmt                           shift and go to state 96
+
+state 115
+
+    (23) func_return -> RETURN expr SEMICOLON .
+
+    RBRACE          reduce using rule 23 (func_return -> RETURN expr SEMICOLON .)
+
+
+state 116
+
+    (29) else_block -> ELSE LBRACE block . RBRACE
+
+    RBRACE          shift and go to state 117
+
+
+state 117
+
+    (29) else_block -> ELSE LBRACE block RBRACE .
+
+    ID              reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    PRINT           reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    IF              reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    WHILE           reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    INT             reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    FLOAT           reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    $end            reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    RBRACE          reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+    RETURN          reduce using rule 29 (else_block -> ELSE LBRACE block RBRACE .)
+
